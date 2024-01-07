@@ -17,7 +17,7 @@ import java.util.Map;
 public class CustomErrorController implements ErrorController {
 
     private static final String PATH = "/error";
-    public ErrorAttributes errorAttributes;
+    public final ErrorAttributes errorAttributes;
 
     @RequestMapping(PATH)
     public ResponseEntity<ErrorDto> error(WebRequest webRequest) {
