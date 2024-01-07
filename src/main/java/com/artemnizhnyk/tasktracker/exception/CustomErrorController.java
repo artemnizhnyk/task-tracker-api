@@ -14,10 +14,10 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
-public class CustomExceptionController implements ErrorController {
+public class CustomErrorController implements ErrorController {
 
     private static final String PATH = "/error";
-    private ErrorAttributes errorAttributes;
+    public ErrorAttributes errorAttributes;
 
     @RequestMapping(PATH)
     public ResponseEntity<ErrorDto> error(WebRequest webRequest) {

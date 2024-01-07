@@ -10,18 +10,21 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskState {
+public class TaskStateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
     private String name;
     private Long ordinal;
-    private Instant createdAt = Instant.now();
     private String description;
+    @Builder.Default
+    private Instant createdAt = Instant.now();
+    @Builder.Default
     @OneToMany
     @JoinColumn(name = "task_state_id", referencedColumnName = "id")
-    private List<Task> tasks = new ArrayList<>();
+    private List<TaskEntity> tasks = new ArrayList<>();
 }

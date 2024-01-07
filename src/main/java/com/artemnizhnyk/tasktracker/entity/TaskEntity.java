@@ -4,20 +4,22 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Builder
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class Task {
+public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
     private String name;
     private String description;
+    @Builder.Default
     private Instant createdAt = Instant.now();
 
 }

@@ -1,4 +1,4 @@
-package com.artemnizhnyk.tasktrackerapi;
+package com.artemnizhnyk.tasktracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

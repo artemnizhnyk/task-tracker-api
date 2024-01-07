@@ -1,13 +1,14 @@
-package com.artemnizhnyk.tasktracker.api.mapper;
+package com.artemnizhnyk.tasktracker.service.mapper;
 
-import com.artemnizhnyk.tasktracker.api.dto.TaskStateDto;
+import com.artemnizhnyk.tasktracker.service.dto.TaskStateDto;
 import com.artemnizhnyk.tasktracker.entity.TaskStateEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @Component
 public class TaskStateMapper {
-    public TaskStateDto toDto(TaskStateEntity entity) {
+    public TaskStateDto toDto(final TaskStateEntity entity) {
         return TaskStateDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
@@ -16,7 +17,7 @@ public class TaskStateMapper {
                 .build();
     }
 
-    public List<TaskStateDto> toDto(List<TaskStateEntity> entities) {
+    public List<TaskStateDto> toDto(final List<TaskStateEntity> entities) {
         return entities.stream()
                 .map(this::toDto)
                 .toList();

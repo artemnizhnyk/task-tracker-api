@@ -1,4 +1,4 @@
-package com.artemnizhnyk.tasktracker.api.dto;
+package com.artemnizhnyk.tasktracker.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
