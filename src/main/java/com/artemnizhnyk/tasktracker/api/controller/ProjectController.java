@@ -1,5 +1,6 @@
 package com.artemnizhnyk.tasktracker.api.controller;
 
+import com.artemnizhnyk.tasktracker.api.controller.helpers.ControllerHelper;
 import com.artemnizhnyk.tasktracker.entity.ProjectEntity;
 import com.artemnizhnyk.tasktracker.exception.BadRequestException;
 import com.artemnizhnyk.tasktracker.exception.NotFoundException;
@@ -24,6 +25,7 @@ public class ProjectController {
 
     private final ProjectRepository projectRepository;
     private final ProjectMapper projectMapper;
+    private final ControllerHelper controllerHelper;
 
 
     public static final String FETCH_PROJECTS = "/projects";
@@ -75,7 +77,7 @@ public class ProjectController {
         boolean isCreate = !optionalProjectId.isPresent();
 
         final ProjectEntity project = optionalProjectId
-                .map(this::getProjectOrThrowException)
+                .map(controllerHelper::getProjectOrThrowException)
                 .orElseGet(() -> ProjectEntity.builder().build());
 
         if (isCreate && !optionalProjectName.isPresent()) {
@@ -110,7 +112,7 @@ public class ProjectController {
             throw new BadRequestException("Name can't be empty.");
         }
 
-        ProjectEntity project = getProjectOrThrowException(project_id);
+        ProjectEntity project = controllerHelper.getProjectOrThrowException(project_id);
 
         projectRepository
                 .findByName(projectName)
@@ -129,22 +131,10 @@ public class ProjectController {
     @DeleteMapping(DELETE_PROJECT)
     public AnswerDto deleteProject(@PathVariable("project_id") final Long project_id) {
 
-        getProjectOrThrowException(project_id);
+        controllerHelper.getProjectOrThrowException(project_id);
 
         projectRepository.deleteById(project_id);
 
         return AnswerDto.makeDefault(true);
-    }
-
-    private ProjectEntity getProjectOrThrowException(final Long project_id) {
-        return projectRepository
-                .findById(project_id)
-                .orElseThrow(() ->
-                        new NotFoundException(
-                                String.format(
-                                        "Project with \"%s\" doesn't exist.", project_id
-                                )
-                        )
-                );
     }
 }
