@@ -9,7 +9,6 @@ import java.time.Instant;
 @Getter
 @Setter
 @Builder
-
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskEntity {

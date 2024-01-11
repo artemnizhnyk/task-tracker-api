@@ -15,14 +15,10 @@ public class TaskStateDto {
     private Long id;
     @NonNull
     private String name;
-    @NonNull
     @JsonProperty("left_task_state_id")
     private Long leftTaskStateId;
-    @NonNull
     @JsonProperty("right_task_state_id")
     private Long rightTaskStateId;
-    @NonNull
-    private String description;
     @NonNull
     @JsonProperty("created_at")
     private Instant createdAt;

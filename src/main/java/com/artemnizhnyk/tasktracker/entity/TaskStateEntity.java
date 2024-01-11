@@ -2,6 +2,8 @@ package com.artemnizhnyk.tasktracker.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.time.Instant;
 import java.util.ArrayList;
